@@ -24,8 +24,7 @@ export class NavbarComponent implements OnInit {
       this.data = truncateEthAddress(response[0]);
       this.authenticated = true;
       this.web3.accountInfo(response[0]).then((res: any) => {
-        this.balance = res;
-        console.log(res);
+        this.balance = Number(res).toFixed(4);
       })
     })
   }

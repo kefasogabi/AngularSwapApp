@@ -7,6 +7,7 @@ import { provider } from 'web3-core';
 import vSwapContract from "../../../assets/contracts/vswap.json";
 import BNBContract from "../../../assets/contracts/BNB.json";
 import BSCContract from "../../../assets/contracts/BSC.json";
+import FORMULAContract from "../../../assets/contracts/Formula.json";
 
 @Component({
   selector: 'app-v-swap',
@@ -66,6 +67,22 @@ export class VSwapComponent implements OnInit {
     this.Connect();
   }
 
+  getExchangeRate(fromAddress:any, toAddress:any){
+    this.web3.connectWeb3().then((response:any)=>{
+      this.web3js = response;
+      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xc6c5E3779342Ae82EEAD779C45DB1c99557Cb7d1");
+
+      let convertToWei = this.web3js.utils.toWei(this.vSwapForm.value.from, 'Ether');
+
+      let res = FORMULAInstance.methods
+        .getAmountsOut(fromAddress, toAddress, convertToWei, ["0x09fd82D68B231A162d4f8f1931C850fccF30F97A"])
+        .call().then( (k:any) => { this.vSwapForm.get('to')?.setValue(this.web3js.utils.fromWei(k[1] , 'ether')); });
+
+
+
+    })
+  }
+
   Connect() {
     this.web3.connectAccount().then((response:any) => {
       this.account = response[0];
@@ -90,6 +107,8 @@ export class VSwapComponent implements OnInit {
       const instance = new this.web3js.eth.Contract(vSwapContract, "0x69A16A5c7668FEF080a38fc589ECFAFDc6B3873F");
       const BNBInstance = new this.web3js.eth.Contract(BNBContract, "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609");
       const BSCInstance = new this.web3js.eth.Contract(BSCContract, "0xeC2dA8246a880C28D4476F1CB8204310e9988af5");
+      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xc6c5E3779342Ae82EEAD779C45DB1c99557Cb7d1");
+
       let approveInstance:any;
       let approveInstanceAddress:any;
       if(addressFrom == "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609"){
@@ -141,6 +160,9 @@ export class VSwapComponent implements OnInit {
       this.logoTo = inputSelectLogo;
       this.addressTo = address;
     }
+
+    this.vSwapForm.get('from')?.setValue("");
+    this.vSwapForm.get('to')?.setValue("");
   }
 
   selected(value:any){

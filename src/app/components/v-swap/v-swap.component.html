@@ -12,7 +12,7 @@
         <form [formGroup]="vSwapForm" (ngSubmit)="swapToken(this.addressFrom, this.addressTo, this.account)">
           <label for="exampleInputEmail1">From:</label>
           <div class="input-group mb-3" style="background: black;">
-            <input type="text" class="form-control" formControlName="from" placeholder="0.0" >
+            <input type="text" class="form-control" formControlName="from" placeholder="0.0" (keyup)="getExchangeRate(this.addressFrom, this.addressTo)">
             <div class="input-group-append" data-toggle="modal" data-target="#modal-secondary" (click)="selected('FROM')">
               <div class="input-group-text" style=" display: flex; align-items: center;">
                 <img src="{{logoFrom}}" height="25" width="25" /> <span style="margin-left: 5px;"> {{tokenFrom}}</span>
@@ -27,7 +27,7 @@
           </div>
           <label for="exampleInputEmail1">To</label>
           <div class="input-group mb-3">
-            <input type="text" class="form-control" formControlName="to" placeholder="0.0">
+            <input type="text" class="form-control" formControlName="to" placeholder="0.0" >
             <div class="input-group-append" data-toggle="modal" data-target="#modal-secondary" (click)="selected('TO')">
               <div class="input-group-text" style=" display: flex; align-items: center;">
                 <span *ngIf="tokenTo == ''">Select a token</span>
