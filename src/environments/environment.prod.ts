@@ -1,3 +1,4 @@
 export const environment = {
-  infuraId: ''
+  production: true,
+  infuraId: '',
 };
