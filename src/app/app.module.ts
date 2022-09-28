@@ -9,6 +9,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { VSwapComponent } from './components/v-swap/v-swap.component';
 import { VPegSwapComponent } from './components/v-peg-swap/v-peg-swap.component';
+import { EnairaComponent } from './components/enaira/enaira.component';
+import { EnairaService } from './services/enaira.service';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode'
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { VPegSwapComponent } from './components/v-peg-swap/v-peg-swap.component'
     NavbarComponent,
     SidebarComponent,
     VSwapComponent,
-    VPegSwapComponent
+    VPegSwapComponent,
+    EnairaComponent
   ],
   imports: [
     BrowserModule,
@@ -24,13 +28,16 @@ import { VPegSwapComponent } from './components/v-peg-swap/v-peg-swap.component'
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxQRCodeModule,
     RouterModule.forRoot([
       { path: '', component: VSwapComponent },
       { path: 'vswap', component: VSwapComponent },
       { path: 'vpegswap', component: VPegSwapComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    EnairaService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

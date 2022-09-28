@@ -62,7 +62,6 @@
               "src/assets/plugins/fastclick/fastclick.js",
               "src/assets/dist/js/adminlte.min.js",
               "src/assets/dist/js/pages/dashboard2.js",
-              "src/assets/dist/js/demo.js",
               "src/assets/plugins/datatables/jquery.dataTables.js",
               "src/assets/plugins/toastr/toastr.min.js"
             ]
