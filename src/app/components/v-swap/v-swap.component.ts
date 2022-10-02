@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import { provider } from 'web3-core';
 import vSwapContract from "../../../assets/contracts/vswap.json";
 import BNBContract from "../../../assets/contracts/BNB.json";
-import BSCContract from "../../../assets/contracts/BSC.json";
+import BUSDContract from "../../../assets/contracts/BUSD.json";
 import FORMULAContract from "../../../assets/contracts/Formula.json";
 
 @Component({
@@ -33,7 +33,7 @@ export class VSwapComponent implements OnInit {
   tokenFrom:string = "BNB";
   tokenTo:string = "";
 
-  addressFrom:string = "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609";
+  addressFrom:string = "0x2383F69a911Bc80afCaeeFB5B67649D1A078Cae7";
   addressTo:string = "";
 
   error_messages = {
@@ -47,9 +47,8 @@ export class VSwapComponent implements OnInit {
   }
   constructor(private web3: Web3Service, private formBuilder: FormBuilder) {
      this.tokens = [
-        { "logo": "assets/images/BTC_LOGO.png", "name": " BNB", "addresss": "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609" },
-        { "logo": "assets/images/BSC-logo.svg", "name": " BSC", "addresss": "0xeC2dA8246a880C28D4476F1CB8204310e9988af5" }
-        // { "logo": "assets/images/ETH_LOGO.png", "name": " ETH", "addresss": "" }
+        { "logo": "assets/images/BTC_LOGO.png", "name": " BNB", "addresss": "0x2383F69a911Bc80afCaeeFB5B67649D1A078Cae7" },
+        { "logo": "assets/images/BSC-logo.svg", "name": " BUSD", "addresss": "0x33D54e2E33C5a1BBBbBdd51A6668af4dC4465ff8" }
     ];
 
     this.vSwapForm = this.formBuilder.group({
@@ -70,12 +69,12 @@ export class VSwapComponent implements OnInit {
   getExchangeRate(fromAddress:any, toAddress:any){
     this.web3.connectWeb3().then((response:any)=>{
       this.web3js = response;
-      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xc6c5E3779342Ae82EEAD779C45DB1c99557Cb7d1");
+      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xd4d4c0b8868A81D12FE55bBdF37edB8e04eF9BF6");
 
       let convertToWei = this.web3js.utils.toWei(this.vSwapForm.value.from, 'Ether');
 
       let res = FORMULAInstance.methods
-        .getAmountsOut(fromAddress, toAddress, convertToWei, ["0x09fd82D68B231A162d4f8f1931C850fccF30F97A"])
+        .getAmountsOut(fromAddress, toAddress, convertToWei, ["0x67a7A2363e5387E6989B9b3f338AB0E009f7C025"])
         .call().then( (k:any) => { this.vSwapForm.get('to')?.setValue(this.web3js.utils.fromWei(k[1] , 'ether')); });
 
 
@@ -104,14 +103,14 @@ export class VSwapComponent implements OnInit {
 
       var networkId = this.web3js.eth.net.getId();
       const networkType = this.web3js.eth.net.getNetworkType();
-      const instance = new this.web3js.eth.Contract(vSwapContract, "0x69A16A5c7668FEF080a38fc589ECFAFDc6B3873F");
-      const BNBInstance = new this.web3js.eth.Contract(BNBContract, "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609");
-      const BSCInstance = new this.web3js.eth.Contract(BSCContract, "0xeC2dA8246a880C28D4476F1CB8204310e9988af5");
-      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xc6c5E3779342Ae82EEAD779C45DB1c99557Cb7d1");
+      const instance = new this.web3js.eth.Contract(vSwapContract, "0xB3A480f233A807534821c34480fb0bdacf4277a8");
+      const BNBInstance = new this.web3js.eth.Contract(BNBContract, "0x2383F69a911Bc80afCaeeFB5B67649D1A078Cae7");
+      const BSCInstance = new this.web3js.eth.Contract(BUSDContract, "0x33D54e2E33C5a1BBBbBdd51A6668af4dC4465ff8");
+      const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xd4d4c0b8868A81D12FE55bBdF37edB8e04eF9BF6");
 
       let approveInstance:any;
       let approveInstanceAddress:any;
-      if(addressFrom == "0x95c8F90aE3f1BBf4C7896A1643acCe5BBe2B0609"){
+      if(addressFrom == "0x2383F69a911Bc80afCaeeFB5B67649D1A078Cae7"){
         approveInstance = BNBInstance;
         approveInstanceAddress = addressFrom;
       }else{
@@ -127,22 +126,30 @@ export class VSwapComponent implements OnInit {
         tokenOut: addressTo,
         amountIn: convertToWei,
         amountOutMin: "0",
-        path: ["0x09fd82D68B231A162d4f8f1931C850fccF30F97A"],
+        path: ["0x67a7A2363e5387E6989B9b3f338AB0E009f7C025"],
         to: account,
         deadline: Math.floor(new Date().getTime()/1000.0) + 600
       }
 
       console.log(data)
-      approveInstance.methods
-      .approve(data.path[0], convertToWei)
-      .send({ from: account })
-      .on('transactionHash', (hash:any) => {
+      if (data.tokenIn != "0x2383F69a911Bc80afCaeeFB5B67649D1A078Cae7" ) {
+        approveInstance.methods
+        .approve("0xB3A480f233A807534821c34480fb0bdacf4277a8", convertToWei)
+        .send({ from: account })
+        .on('transactionHash', (hash:any) => {
 
-      }).on('receipt', (receipt:any) => {
+        }).on('receipt', (receipt:any) => {
+          console.log({data})
+          instance.methods
+          .swapExactTokensForETH(data.tokenIn, data.amountIn, data.amountOutMin, data.path, data.to, data.deadline)
+          .send({ from: account });
+        });
+      } else {
+        const vlue = this.vSwapForm.value.from
         instance.methods
-        .swapExactTokensForTokens(data.tokenIn, data.tokenOut, data.amountIn, data.amountOutMin, data.path, data.to, data.deadline)
-        .send({ from: account });
-      });
+          .swapExactETHForTokens( data.tokenOut, data.amountOutMin, data.path, data.to, data.deadline)
+          .send({ value: Number(0.2).toString(), from: account });
+      }
     })
 
 

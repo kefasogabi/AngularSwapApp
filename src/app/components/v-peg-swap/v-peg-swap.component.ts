@@ -6,7 +6,7 @@ import Web3 from 'web3';
 import { provider } from 'web3-core';
 import vPegSwapContract from "../../../assets/contracts/vPegSwapContract.json";
 import BUSDContract from "../../../assets/contracts/BNB.json";
-import DAIContract from "../../../assets/contracts/BSC.json";
+import DAIContract from "../../../assets/contracts/BUSD.json";
 // import FORMULAContract from "../../../assets/contracts/Formula.json";
 
 @Component({
@@ -35,7 +35,7 @@ export class VPegSwapComponent implements OnInit {
   tokenFrom:string = "BUSD";
   tokenTo:string = "";
 
-  addressFrom:string = "0x9f0227a21987c1ffab1785ba3eba60578ec1501b";
+  addressFrom:string = "0x33D54e2E33C5a1BBBbBdd51A6668af4dC4465ff8";
   addressTo:string = "";
 
   indexTo:number = 1;
@@ -52,8 +52,8 @@ export class VPegSwapComponent implements OnInit {
   }
   constructor(private web3: Web3Service, private formBuilder: FormBuilder) {
      this.tokens = [
-        { "logo": "assets/images/BUSD_LOGO.png", "name": " BUSD", "addresss": "0x9f0227a21987c1ffab1785ba3eba60578ec1501b", "index": 0 },
-        { "logo": "assets/images/DAI_LOGO.png", "name": " DAI", "addresss": "0x10249e900b919fdee9e2ed38b4cd83c4df857254", "index":1 }
+        { "logo": "assets/images/BUSD_LOGO.png", "name": " BUSD", "addresss": "0x33D54e2E33C5a1BBBbBdd51A6668af4dC4465ff8", "index": 0 },
+        { "logo": "assets/images/DAI_LOGO.png", "name": " DAI", "addresss": "0x9A147C3c1663b9aba3545850119F8e93ecA52199", "index":1 }
         // { "logo": "assets/images/ETH_LOGO.png", "name": " ETH", "addresss": "" }
     ];
 
@@ -109,10 +109,9 @@ export class VPegSwapComponent implements OnInit {
 
       var networkId = this.web3js.eth.net.getId();
       const networkType = this.web3js.eth.net.getNetworkType();
-      const instance = new this.web3js.eth.Contract(vPegSwapContract, "0x7F6573c4E4Bd53075e3A06A3d625b4c901BDB8cC");
-      const BUSDInstance = new this.web3js.eth.Contract(BUSDContract, "0x9f0227a21987c1ffab1785ba3eba60578ec1501b");
-      const DAIInstance = new this.web3js.eth.Contract(DAIContract, "0x10249e900b919fdee9e2ed38b4cd83c4df857254");
-      // const FORMULAInstance = new this.web3js.eth.Contract(FORMULAContract, "0xc6c5E3779342Ae82EEAD779C45DB1c99557Cb7d1");
+      const instance = new this.web3js.eth.Contract(vPegSwapContract, "0x7e643d12d1DED2ACE9b238a65cd51ac5dE9e7318");
+      const BUSDInstance = new this.web3js.eth.Contract(BUSDContract, "0x33D54e2E33C5a1BBBbBdd51A6668af4dC4465ff8");
+      const DAIInstance = new this.web3js.eth.Contract(DAIContract, "0x9A147C3c1663b9aba3545850119F8e93ecA52199");
 
       let approveInstance:any;
       let approveInstanceAddress:any;
@@ -141,7 +140,7 @@ export class VPegSwapComponent implements OnInit {
 
       console.log(data)
       approveInstance.methods
-      .approve("0x7F6573c4E4Bd53075e3A06A3d625b4c901BDB8cC", convertToWei)
+      .approve("0x7e643d12d1DED2ACE9b238a65cd51ac5dE9e7318", convertToWei)
       .send({ from: account })
       .on('transactionHash', (hash:any) => {
 
