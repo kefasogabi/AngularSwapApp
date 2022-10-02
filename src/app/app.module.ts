@@ -12,7 +12,9 @@ import { VPegSwapComponent } from './components/v-peg-swap/v-peg-swap.component'
 import { EnairaComponent } from './components/enaira/enaira.component';
 import { EnairaService } from './services/enaira.service';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
-import { VStakeComponent } from './components/v-stake/v-stake.component'
+import { VStakeComponent } from './components/v-stake/v-stake.component';
+import { VFarmComponent } from './components/v-farm/v-farm.component';
+import { VSaveComponent } from './components/v-save/v-save.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { VStakeComponent } from './components/v-stake/v-stake.component'
     VSwapComponent,
     VPegSwapComponent,
     EnairaComponent,
-    VStakeComponent
+    VStakeComponent,
+    VFarmComponent,
+    VSaveComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { VStakeComponent } from './components/v-stake/v-stake.component'
       { path: '', component: VSwapComponent },
       { path: 'vswap', component: VSwapComponent },
       { path: 'vpegswap', component: VPegSwapComponent },
-      { path: 'vstake', component: VStakeComponent }
+      { path: 'vstake', component: VStakeComponent },
+      { path: 'vFarm', component: VFarmComponent },
+      { path: 'vSave', component: VSaveComponent }
     ])
   ],
   providers: [

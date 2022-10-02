@@ -4,15 +4,15 @@ import { Web3Service } from 'src/app/services/contract/web3.service';
 import truncateEthAddress from 'truncate-eth-address'
 import Web3 from 'web3';
 import { provider } from 'web3-core';
-import vStakeContract from "../../../assets/contracts/vstakeAbi.json";
+import vFarmContract from "../../../assets/contracts/vFarmAbi.json";
 import BUSDContract from "../../../assets/contracts/BNB.json";
 
 @Component({
-  selector: 'app-v-stake',
-  templateUrl: './v-stake.component.html',
-  styleUrls: ['./v-stake.component.css']
+  selector: 'app-v-farm',
+  templateUrl: './v-farm.component.html',
+  styleUrls: ['./v-farm.component.css']
 })
-export class VStakeComponent implements OnInit {
+export class VFarmComponent implements OnInit {
 
   authenticated: boolean = false;
   data: string = "";
@@ -78,17 +78,15 @@ export class VStakeComponent implements OnInit {
 
       var networkId = this.web3js.eth.net.getId();
       const networkType = this.web3js.eth.net.getNetworkType();
-      const instance = new this.web3js.eth.Contract(vStakeContract, "0xe069c797ab330EB3362743e3E25225E47bE98122");
-      const approveInstanceAddress = new this.web3js.eth.Contract(BUSDContract, "0xf8162a23CC765D4A8765beb9087823fF0e009C07");
+      const instance = new this.web3js.eth.Contract(vFarmContract, "0x654ABd04dD9fDd30184E09F0c948Fc8A1f648540");
+      const approveInstanceAddress = new this.web3js.eth.Contract(BUSDContract, "0x67a7A2363e5387E6989B9b3f338AB0E009f7C025");
 
       let convertToWei = this.web3js.utils.toWei(this.vStakeForm.value.amount, 'Ether');
-
-console.log(convertToWei);
 
 
       if(value == "STAKE"){
         approveInstanceAddress.methods
-        .approve("0xe069c797ab330EB3362743e3E25225E47bE98122", convertToWei)
+        .approve("0x654ABd04dD9fDd30184E09F0c948Fc8A1f648540", convertToWei)
         .send({ from: account })
         .on('transactionHash', (hash:any) => {
 
@@ -108,4 +106,5 @@ console.log(convertToWei);
 
 
   }
+
 }

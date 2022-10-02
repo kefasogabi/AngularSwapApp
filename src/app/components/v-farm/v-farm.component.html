@@ -1,0 +1,54 @@
+
+
+<div class="hold-transition login-page dark-mode">
+  <div class="">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a href="../../index2.html" class="h1"><b>v</b>Farm</a>
+      </div>
+      <div class="card-body">
+
+        <form [formGroup]="vStakeForm" (ngSubmit)="stakeToken(this.account, this.value)">
+          <label for="exampleInputEmail1">Amount:</label>
+          <div class="input-group mb-3" style="background: black;">
+            <input type="text" class="form-control" formControlName="amount" placeholder="0.0" >
+            <div class="input-group-append" data-toggle="modal" data-target="#modal-secondary" >
+              <div class="input-group-text" style=" display: flex; align-items: center;">
+                <img src="{{WBNBLOGO}}" height="22" width="22" /> <span style="margin-left: 5px;">WBNB+</span><img src="{{BUSDLOGO}}" height="22" width="22" /> <span style="margin-left: 5px;">BUSD</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress progress-xxs">
+            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+                 aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+              <span class="sr-only">60% Complete (warning)</span>
+            </div>
+          </div>
+          <div *ngIf="authenticated" class="social-auth-links text-center mt-2 mb-3">
+           <div class="row">
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-primary btn-block" (click)="toStakeorUnstate('STAKE')">Stake</button>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-primary btn-block" (click)="toStakeorUnstate('UNSTAKE')">Unstake</button>
+            </div>
+
+           </div>
+          </div>
+          <div *ngIf="!authenticated" class="social-auth-links text-center mt-2 mb-3">
+            <button type="button" class="btn btn-primary btn-block" (click)="Connect()">Connect your wallet</button>
+          </div>
+        </form>
+
+        <!-- /.social-auth-links -->
+
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!-- /.login-box -->
+</div>
+
+
