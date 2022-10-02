@@ -15,7 +15,7 @@
             <input type="text" class="form-control" formControlName="from" placeholder="0.0" (keyup)="getExchangeRate(this.addressFrom, this.addressTo)">
             <div class="input-group-append" data-toggle="modal" data-target="#modal-secondary" (click)="selected('FROM')">
               <div class="input-group-text" style=" display: flex; align-items: center;">
-                <img src="{{logoFrom}}" height="25" width="25" /> <span style="margin-left: 5px;"> {{tokenFrom}}</span>
+                <img src="{{logoFrom}}" height="22" width="22" /> <span style="margin-left: 5px;"> {{tokenFrom}}</span>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="input-group-append" data-toggle="modal" data-target="#modal-secondary" (click)="selected('TO')">
               <div class="input-group-text" style=" display: flex; align-items: center;">
                 <span *ngIf="tokenTo == ''">Select a token</span>
-                <img *ngIf="tokenTo != ''" src="{{logoTo}}" height="25" width="25" /> <span *ngIf="tokenTo != ''" style="margin-left: 5px;"> {{tokenTo}}</span>
+                <img *ngIf="tokenTo != ''" src="{{logoTo}}" height="22" width="22" /> <span *ngIf="tokenTo != ''" style="margin-left: 5px;"> {{tokenTo}}</span>
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@
       <div class="modal-body">
         <ul *ngFor="let token of this.tokens">
           <li style=" display: flex; align-items: center;" (click)="SelectedToken(token.name, this.inputSelect, token.logo, token.addresss, token.index)" data-dismiss="modal" aria-label="Close">
-            <img src="{{token.logo}}" height="40" width="25" /> <span style="margin-left: 5px;"> {{ token.name}}</span>
+            <img src="{{token.logo}}" height="40" width="22" /> <span style="margin-left: 5px;"> {{ token.name}}</span>
           </li>
           <hr />
 

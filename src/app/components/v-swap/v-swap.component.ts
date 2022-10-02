@@ -145,10 +145,11 @@ export class VSwapComponent implements OnInit {
           .send({ from: account });
         });
       } else {
-        const vlue = this.vSwapForm.value.from
+        let vlue:string = this.vSwapForm.value.from;
+
         instance.methods
           .swapExactETHForTokens( data.tokenOut, data.amountOutMin, data.path, data.to, data.deadline)
-          .send({ value: Number(0.2).toString(), from: account });
+          .send({ from: account, value: convertToWei, });
       }
     })
 
