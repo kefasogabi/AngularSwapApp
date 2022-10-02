@@ -92,12 +92,12 @@ export class VSaveComponent implements OnInit {
 
         }).on('receipt', (receipt:any) => {
           instance.methods
-          .deposit(0, convertToWei)
+          .deposit(convertToWei,0)
           .send({ from: account });
         });
       }else{
         instance.methods
-        .withdraw(0, convertToWei)
+        .withdraw(convertToWei,0)
         .send({ from: account });
       }
 
