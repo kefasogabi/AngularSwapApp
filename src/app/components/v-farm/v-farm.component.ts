@@ -92,12 +92,12 @@ export class VFarmComponent implements OnInit {
 
         }).on('receipt', (receipt:any) => {
           instance.methods
-          .deposit(convertToWei)
+          .deposit(convertToWei, 0)
           .send({ from: account });
         });
       }else{
         instance.methods
-        .withdraw(convertToWei)
+        .withdraw(convertToWei, 0)
         .send({ from: account });
       }
 
