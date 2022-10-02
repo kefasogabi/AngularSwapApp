@@ -1,7 +1,7 @@
 
 
 <div class="hold-transition login-page dark-mode">
-  <div class="login-box">
+  <div class="">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
@@ -36,14 +36,11 @@
             </div>
           </div>
           <div *ngIf="authenticated" class="social-auth-links text-center mt-2 mb-3">
-            <button type="submit" expand="block" [disabled] = "!vSwapForm.valid" class="bg-orange-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" >
-              Swap
-            </button>
+
+            <button type="submit" class="btn btn-primary btn-block" [disabled] = "!vSwapForm.valid">Swap</button>
           </div>
           <div *ngIf="!authenticated" class="social-auth-links text-center mt-2 mb-3">
-            <button class="bg-orange-500 hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" (click)="Connect()" >
-              Connect your wallet
-            </button>
+            <button type="button" class="btn btn-primary btn-block" (click)="Connect()">Connect your wallet</button>
           </div>
         </form>
 

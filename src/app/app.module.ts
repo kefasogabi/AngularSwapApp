@@ -11,7 +11,8 @@ import { VSwapComponent } from './components/v-swap/v-swap.component';
 import { VPegSwapComponent } from './components/v-peg-swap/v-peg-swap.component';
 import { EnairaComponent } from './components/enaira/enaira.component';
 import { EnairaService } from './services/enaira.service';
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode'
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { VStakeComponent } from './components/v-stake/v-stake.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode'
     SidebarComponent,
     VSwapComponent,
     VPegSwapComponent,
-    EnairaComponent
+    EnairaComponent,
+    VStakeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode'
       { path: '', component: VSwapComponent },
       { path: 'vswap', component: VSwapComponent },
       { path: 'vpegswap', component: VPegSwapComponent },
+      { path: 'vstake', component: VStakeComponent }
     ])
   ],
   providers: [
