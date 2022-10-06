@@ -15,7 +15,6 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { VStakeComponent } from './components/v-stake/v-stake.component';
 import { VFarmComponent } from './components/v-farm/v-farm.component';
 import { VSaveComponent } from './components/v-save/v-save.component';
-import { QRCodeModule } from 'angularx-qrcode';
 import { VGovernanceComponent } from './components/v-governance/v-governance.component';
 
 @NgModule({
@@ -38,7 +37,6 @@ import { VGovernanceComponent } from './components/v-governance/v-governance.com
     ReactiveFormsModule,
     HttpClientModule,
     NgxQRCodeModule,
-    QRCodeModule,
     RouterModule.forRoot([
       { path: '', component: VSwapComponent },
       { path: 'vswap', component: VSwapComponent },
