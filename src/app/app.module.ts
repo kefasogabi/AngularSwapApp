@@ -14,7 +14,9 @@ import { EnairaService } from './services/enaira.service';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { VStakeComponent } from './components/v-stake/v-stake.component';
 import { VFarmComponent } from './components/v-farm/v-farm.component';
-import { VSaveComponent } from './components/v-save/v-save.component'
+import { VSaveComponent } from './components/v-save/v-save.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { VGovernanceComponent } from './components/v-governance/v-governance.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { VSaveComponent } from './components/v-save/v-save.component'
     EnairaComponent,
     VStakeComponent,
     VFarmComponent,
-    VSaveComponent
+    VSaveComponent,
+    VGovernanceComponent
   ],
   imports: [
     BrowserModule,
@@ -35,13 +38,15 @@ import { VSaveComponent } from './components/v-save/v-save.component'
     ReactiveFormsModule,
     HttpClientModule,
     NgxQRCodeModule,
+    QRCodeModule,
     RouterModule.forRoot([
       { path: '', component: VSwapComponent },
       { path: 'vswap', component: VSwapComponent },
       { path: 'vpegswap', component: VPegSwapComponent },
       { path: 'vstake', component: VStakeComponent },
       { path: 'vFarm', component: VFarmComponent },
-      { path: 'vSave', component: VSaveComponent }
+      { path: 'vSave', component: VSaveComponent },
+      { path: 'vGovernance', component: VGovernanceComponent }
     ])
   ],
   providers: [

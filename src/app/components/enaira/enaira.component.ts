@@ -16,7 +16,7 @@ export class EnairaComponent implements OnInit {
   ngOnInit(): void {
     this.elementType = NgxQrcodeElementTypes.URL;
     this.correctonLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
-    this.value = "engn://#01GDWVWXTE62EC5DG71RP7SZ96";
+    this.value = "engn://#01GEHED4135CMHEXK7MZ62REHK";
 
   }
 

@@ -1,0 +1,163 @@
+<div class="hold-transition login-page dark-mode">
+  <div class="row">
+
+
+    <div class="col-12 col-sm-12">
+      <div class="card card-primary card-outline card-outline-tabs">
+        <div class="card-header p-0 border-bottom-0">
+          <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home"
+                role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Stake</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile"
+                role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Earn</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-four-messages-tab" data-toggle="pill"
+                href="#custom-tabs-four-messages" role="tab" aria-controls="custom-tabs-four-messages"
+                aria-selected="false">Profit History</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="custom-tabs-four-tabContent">
+            <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel"
+              aria-labelledby="custom-tabs-four-home-tab">
+
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel"
+              aria-labelledby="custom-tabs-four-profile-tab">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">ValueLiquid pending profit</h3>
+
+                    <div class="card-tools">
+                      <p>Total estimated pending: 0 VALUE</p>
+                    </div>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Asset</th>
+                          <th>Amount</th>
+                          <th style="width: 40px">Expected</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-four-messages" role="tabpanel"
+              aria-labelledby="custom-tabs-four-messages-tab">
+
+            </div>
+          </div>
+        </div>
+        <!-- /.card -->
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12">
+      <div class="accordion mt-4 pr-0" id="accordion2">
+        <div class="card pr-0" style="border-color:#3f6791; border-width:2px; border-radius:50px">
+          <div class="card-header ml-0 p-0  w-100" style="border-top-right-radius:50px;">
+            <div class="card-header ml-0 pb-0" id="headingOne">
+              <div class="row">
+                <div class="col-4">
+                  <h3 style="color: white;" class="btn bank p-4 border-0 "> Balance not farm yet</h3>
+                </div>
+                <div class="col-4 text-center">
+                  <h5 style="color: white;" class="btn bank p-4 border-0">Currently Staked</h5>
+                </div>
+                <div class="col-4 text-right">
+                  <div class="btn-group-vertical p-4">
+                    <button type="button"
+                      style="color: white; border-top-right-radius:50px; border-top-left-radius:50px;"
+                      class="btn btn-primary btn-xs bank pl-4 pr-4 pt-2 border-0" data-toggle="collapse"
+                      data-target="#collapseOne2" [attr.aria-expanded]="isExpanded"
+                      aria-controls="collapseOne2" (click)="showstake()">Stake</button>
+                    <button type="button"
+                      style="color: white; border-bottom-right-radius:50px; border-bottom-left-radius:50px;"
+                      class="btn btn-primary btn-xs bank pl-4 pr-4 pb-2 border-0" data-toggle="collapse"
+                      data-target="#collapseOne2" [attr.aria-expanded]="isExpanded" aria-controls="collapseOne2" (click)="showunstake()">
+                      Unstake</button>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="">
+            <div class="card-block grey-alt-bg">
+              <div *ngIf="stakeShow">
+                <form [formGroup]="vGovStakeForm" (ngSubmit)="stakeToken(this.account)">
+                  <div class="row m-5">
+                    <div class="input-group col-12">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="assets/images/VALUEDIFI.png" height="22"
+                            width="22" /></span>
+                      </div>
+                      <input type="text" class="form-control" formControlName="amount" placeholder="0.00">
+                      <div class="input-group-append">
+                        <span class="input-group-text">VALUE</span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-6"> <button type="button" (click)="showstake()" class="btn btn-outline-primary btn-block">Cancel</button>
+                    </div>
+                    <div class="col-6">
+                      <button *ngIf="authenticated" type="submit" [disabled] = "!vGovStakeForm.valid" class="btn btn-primary btn-block">Stake</button>
+                      <button *ngIf="!authenticated" type="button" class="btn btn-primary btn-block" (click)="Connect()">Connect your wallet</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+
+
+              <div *ngIf="unstakeShow">
+                <form [formGroup]="vGovUnStakeForm" (ngSubmit)="unstakeToken(this.account)">
+                  <div class="row m-5">
+                    <div class="input-group col-12">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><img src="assets/images/VALUEDIFI.png" height="22"
+                            width="22" /></span>
+                      </div>
+                      <input type="text" class="form-control" formControlName="amount" placeholder="0.00">
+                      <div class="input-group-append">
+                        <span class="input-group-text">VALUE</span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-6"> <button type="button" (click)="showunstake()" class="btn btn-outline-primary btn-block">Cancel</button>
+                    </div>
+                    <div class="col-6">
+                      <button *ngIf="authenticated" type="submit" [disabled] = "!vGovUnStakeForm.valid" class="btn btn-primary btn-block">Unstake</button>
+                      <button *ngIf="!authenticated" type="button" class="btn btn-primary btn-block" (click)="Connect()">Connect your wallet</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
