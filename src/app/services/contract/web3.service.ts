@@ -52,6 +52,10 @@ export class Web3Service {
       },
     };
 
+    providerOptions.walletconnect.package
+
+    console.log( providerOptions.walletconnect.package);
+
     this.web3Modal = new Web3Modal({
       network: "mainnet", // optional change this with the net you want to use like rinkeby etc
       cacheProvider: true, // optional
@@ -73,6 +77,8 @@ export class Web3Service {
       this.web3js = new Web3(this.provider);
     } // create web3 instance
     this.accounts = await this.web3js.eth.getAccounts();
+
+
     return this.accounts;
   }
 
