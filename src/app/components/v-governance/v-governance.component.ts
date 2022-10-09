@@ -68,18 +68,18 @@ stakeToken(account:any){
     this.web3js = response;
 
     const instance = new this.web3js.eth.Contract(vGovernanceContract, "0xc7f8894accd0c6Da9F30DeC316799C56B772C3Fd");
-    const approveInstanceAddress = new this.web3js.eth.Contract(BUSDContract, "0x67a7A2363e5387E6989B9b3f338AB0E009f7C025");
+    const approveInstanceAddress = new this.web3js.eth.Contract(BUSDContract, "0x15851f940662df21ef6bEEaD8931a965572cb361");
 
     let convertToWei = this.web3js.utils.toWei(this.vGovStakeForm.value.amount, 'Ether');
 
     approveInstanceAddress.methods
-    .approve("0x654ABd04dD9fDd30184E09F0c948Fc8A1f648540", convertToWei)
+    .approve("0xc7f8894accd0c6Da9F30DeC316799C56B772C3Fd", convertToWei)
     .send({ from: account })
     .on('transactionHash', (hash:any) => {
 
     }).on('receipt', (receipt:any) => {
       instance.methods
-      .deposit(0,convertToWei)
+      .deposit(convertToWei,"0x0000000000000000000000000000000000000000",0)
       .send({ from: account });
     });
 
@@ -91,20 +91,12 @@ unstakeToken(account:any){
     this.web3js = response;
 
     const instance = new this.web3js.eth.Contract(vGovernanceContract, "0xc7f8894accd0c6Da9F30DeC316799C56B772C3Fd");
-    const approveInstanceAddress = new this.web3js.eth.Contract(BUSDContract, "0x67a7A2363e5387E6989B9b3f338AB0E009f7C025");
 
     let convertToWei = this.web3js.utils.toWei(this.vGovUnStakeForm.value.amount, 'Ether');
 
-    approveInstanceAddress.methods
-    .approve("0x654ABd04dD9fDd30184E09F0c948Fc8A1f648540", convertToWei)
-    .send({ from: account })
-    .on('transactionHash', (hash:any) => {
-
-    }).on('receipt', (receipt:any) => {
       instance.methods
-      .withdraw(0,convertToWei)
+      .withdraw(convertToWei, 0)
       .send({ from: account });
-    });
 
   })
 }
